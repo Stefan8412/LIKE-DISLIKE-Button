@@ -28,24 +28,32 @@ export class LikeDislikeComponent {
   chooseclassl:boolean = true;
   chooseclassd:boolean = true;
 
-  likeButtonClick(){
-    if (this.numberOfLikes===100 && this.numberOfDislike===25){
-    this.numberOfLikes++;this.chooseclassl=false;}
-    else if (this.numberOfLikes===100 && this.numberOfDislike===26){
-    this.numberOfLikes++;this.chooseclassl=false;this.numberOfDislike--;this.chooseclassd=true;}
-    else{
-      this.numberOfLikes--;this.chooseclassl=true;
+  likeButtonClick() {
+    if (this.likesCounter === true && this.dislikeCounter === true) {
+      this.numberOfLikes++;
+      this.likesCounter = false;
+    } else if (this.likesCounter === true && this.dislikeCounter === false) {
+      this.numberOfLikes++;
+      this.likesCounter = false;
+      this.numberOfDislike--;
+      this.dislikeCounter = true;
+    } else if (this.likesCounter === false && this.dislikeCounter === true) {
+      this.numberOfLikes--;
+      this.likesCounter = true;
     }
   }
-  dislikeButtonClick(){
-    if(this.numberOfDislike===25 && this.numberOfLikes===100){
-    this.numberOfDislike++;this.chooseclassd=false;
-  }
-else if(this.numberOfDislike===25 && this.numberOfLikes===101){
-  this.numberOfDislike++;this.numberOfLikes--;this.chooseclassd=false;this.chooseclassl=true;}
-
-    else{
-      this.numberOfDislike--;this.chooseclassd=true;
+  dislikeButtonClick() {
+    if (this.dislikeCounter === true && this.likesCounter === true) {
+      this.numberOfDislike++;
+      this.dislikeCounter = false;
+    } else if (this.dislikeCounter === true && this.likesCounter === false) {
+      this.numberOfDislike++;
+      this.numberOfLikes--;
+      this.dislikeCounter = false;
+      this.likesCounter = true;
+    } else if (this.dislikeCounter === false && this.likesCounter === true) {
+      this.numberOfDislike--;
+      this.dislikeCounter = true;
     }
   }
 }
